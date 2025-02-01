@@ -36,12 +36,15 @@
             font-weight: bold;
             margin-bottom: 10px;
             padding-left: 5px;
+            cursor: pointer;
+            color: #333;
         }
 
         /* 书签列表 */
         .bookmark-list {
             list-style: none;
             padding: 0;
+            display: none; /* 初始隐藏 */
         }
 
         /* 书签项 */
@@ -98,9 +101,9 @@
     <!-- 书签容器 -->
     <div class="bookmarks-container">
         
-        <!-- 书签分类 -->
-        <div class="bookmark-category">📂 书签栏</div>
-        <ul class="bookmark-list">
+        <!-- 书签分类 - 书签栏 -->
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks1')">📂 常用书签</div>
+        <ul id="bookmarks1" class="bookmark-list">
             <li class="bookmark-item">
                 <a href="https://example.com" target="_blank">示例网站</a>
                 <span class="menu-btn">⋮</span>
@@ -111,8 +114,9 @@
             </li>
         </ul>
 
-        <div class="bookmark-category">📁 其他书签</div>
-        <ul class="bookmark-list">
+        <!-- 书签分类 - 其他书签 -->
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks2')">📁 其他书签</div>
+        <ul id="bookmarks2" class="bookmark-list">
             <li class="bookmark-item">
                 <a href="https://developer.mozilla.org" target="_blank">MDN Web Docs</a>
                 <span class="menu-btn">⋮</span>
@@ -124,6 +128,26 @@
         </ul>
 
     </div>
+
+    <script>
+        // 展开或收缩书签列表
+        function toggleBookmarkList(id) {
+            var list = document.getElementById(id);
+            if (list.style.display === "none" || list.style.display === "") {
+                list.style.display = "block";  // 展开
+            } else {
+                list.style.display = "none";  // 收缩
+            }
+        }
+
+        // 页面加载时，默认展开某些分类
+        window.onload = function() {
+            // 默认展开书签栏
+            document.getElementById('bookmarks1').style.display = 'block';
+            // 默认展开其他书签
+            document.getElementById('bookmarks2').style.display = 'none';
+        };
+    </script>
 
 </body>
 </html>
