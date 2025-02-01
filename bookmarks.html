@@ -155,8 +155,8 @@
 
     <!-- 左侧导航栏 -->
     <div class="sidebar">
-        <a class="nav-item" href="#bookmarks1">📂 常用书签</a>
-        <a class="nav-item" href="#bookmarks2">📁 读书</a>
+        <a class="nav-item" href="#bookmarks1">常用书签</a>
+        <a class="nav-item" href="#bookmarks2">其他书签</a>
     </div>
 
     <!-- 右侧内容区域 -->
@@ -168,11 +168,6 @@
         <!-- 书签分类 - 书签栏 -->
         <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks1')">📂 常用书签</div>
         <ul id="bookmarks1" class="bookmark-list">
-            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
-                <a href="https://example.com" target="_blank">示例网站</a>
-                <span class="menu-btn">⋮</span>
-                <div class="bookmark-info">这是一个示例网站说明</div>
-            </li>
             <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
                 <a href="https://github.com" target="_blank">GitHub</a>
                 <span class="menu-btn">⋮</span>
@@ -187,6 +182,55 @@
                 <a href="https://www.book345.com/" target="_blank">无名图书</a>
                 <span class="menu-btn">⋮</span>
                 <div class="bookmark-info">无名图书 | 一个好看的电子书解析网站</div>
+            </li>
+        </ul>
+
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks-search')">🔍 搜索引擎</div>
+        <ul id="bookmarks-search" class="bookmark-list">
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.google.com/" target="_blank">Google</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Google | 全球最大搜索引擎，提供精准搜索结果</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.bing.com/" target="_blank">Bing</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Bing | 微软旗下搜索引擎，集成 AI 和每日壁纸</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.baidu.com/" target="_blank">百度</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">百度 | 中国最大的搜索引擎，适用于中文内容搜索</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.sogou.com/" target="_blank">搜狗</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">搜狗 | 语音识别与 AI 翻译支持的搜索引擎</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">DuckDuckGo | 保护隐私的无跟踪搜索引擎</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.startpage.com/" target="_blank">StartPage</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">StartPage | Google 搜索+隐私保护，零跟踪广告</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://search.brave.com/" target="_blank">Brave Search</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Brave Search | 去中心化搜索，独立索引构建</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.yandex.com/" target="_blank">Yandex</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Yandex | 俄罗斯搜索引擎，强大的图片和地图搜索</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.ecosia.org/" target="_blank">Ecosia</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Ecosia | 绿色环保搜索，每 45 次搜索可种一棵树</div>
             </li>
         </ul>
     </div>
