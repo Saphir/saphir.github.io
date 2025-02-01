@@ -1,9 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-    <title>My Bookmarks</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📚 书签导航</title>  <!-- 在标题前增加 Emoji 也可以模拟图标 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* 页面全局样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 150px;
+            background: linear-gradient(to bottom, #d12a61, #e73c7e);
+            position: fixed;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 导航项 */
+        .nav-item {
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* 右侧主内容区域 */
+        .content {
+            margin-left: 220px; /* 避免被导航栏遮挡 */
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        /* 顶部导航栏 */
+        .navbar {
+            background: linear-gradient(to right, #d12a61, #e73c7e);
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* 书签分类 */
+        .bookmark-category {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-left: 5px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* 书签列表 */
+        .bookmark-list {
+            list-style: none;
+            padding: 0;
+            display: none; /* 初始隐藏 */
+        }
+
+        /* 书签项 */
+        .bookmark-item {
+            background: white;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .bookmark-item:hover {
+            transform: scale(1.02);
+        }
+
+        .bookmark-item a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* 右侧菜单按钮 */
+        .menu-btn {
+            font-size: 18px;
+            cursor: pointer;
+            color: gray;
+        }
+
+        /* 详细信息 */
+        .bookmark-info {
+            display: none;
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        /* 适配移动端 */
+        @media (max-width: 600px) {
+            .sidebar {
+                width: 100px;
+            }
+
+            .nav-item {
+                font-size: 14px;
+                padding: 10px;
+            }
+
+            .content {
+                margin-left: 120px;
+            }
+
+            .navbar {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .bookmark-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>This is my bookmarks</h1>
+
+    <!-- 左侧导航栏 -->
+    <div class="sidebar">
+        <a class="nav-item" href="#bookmarks1">常用书签</a>
+        <a class="nav-item" href="#bookmarks-reading">读书</a>
+        <a class="nav-item" href="#bookmarks-search">搜索引擎</a>
+    </div>
+
+    <!-- 右侧内容区域 -->
+    <div class="content">
+        <div class="navbar">
+            📚 书签
+        </div>
+
+        <!-- 书签分类 - 书签栏 -->
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks1')">📂 常用书签</div>
+        <ul id="bookmarks1" class="bookmark-list">
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">GitHub是一个代码托管平台</div>
+            </li>
+        </ul>
+
+        <!-- 书签分类 - 其他书签 -->
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks-reading')">📁 读书</div>
+        <ul id="bookmarks-reading" class="bookmark-list">
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.book345.com/" target="_blank">无名图书</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">无名图书 | 一个好看的电子书解析网站</div>
+            </li>
+        </ul>
+
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks-search')">🔍 搜索引擎</div>
+        <ul id="bookmarks-search" class="bookmark-list">
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.google.com/" target="_blank">Google</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Google | 全球最大搜索引擎，提供精准搜索结果</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.bing.com/" target="_blank">Bing</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Bing | 微软旗下搜索引擎，集成 AI 和每日壁纸</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.baidu.com/" target="_blank">百度</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">百度 | 中国最大的搜索引擎，适用于中文内容搜索</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.sogou.com/" target="_blank">搜狗</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">搜狗 | 语音识别与 AI 翻译支持的搜索引擎</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://duckduckgo.com/" target="_blank">DuckDuckGo</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">DuckDuckGo | 保护隐私的无跟踪搜索引擎</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.startpage.com/" target="_blank">StartPage</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">StartPage | Google 搜索+隐私保护，零跟踪广告</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://search.brave.com/" target="_blank">Brave Search</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Brave Search | 去中心化搜索，独立索引构建</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.yandex.com/" target="_blank">Yandex</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Yandex | 俄罗斯搜索引擎，强大的图片和地图搜索</div>
+            </li>
+            <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
+                <a href="https://www.ecosia.org/" target="_blank">Ecosia</a>
+                <span class="menu-btn">⋮</span>
+                <div class="bookmark-info">Ecosia | 绿色环保搜索，每 45 次搜索可种一棵树</div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // 展开或收缩书签列表
+        function toggleBookmarkList(id) {
+            var list = document.getElementById(id);
+            if (list.style.display === "none" || list.style.display === "") {
+                list.style.display = "block";  // 展开
+            } else {
+                list.style.display = "none";  // 收缩
+            }
+        }
+
+        // 页面加载时，默认展开某些分类
+        window.onload = function() {
+            document.getElementById('bookmarks1').style.display = 'block';
+            document.getElementById('bookmarks-reading').style.display = 'block';
+            document.getElementById('bookmarks-search').style.display = 'block';
+        };
+
+        // 显示详细信息
+        let hoverTimeout;
+        function showInfo(element) {
+            hoverTimeout = setTimeout(function() {
+                element.querySelector('.bookmark-info').style.display = 'block';
+            }, 100); // 0.1秒延迟
+        }
+
+        // 隐藏详细信息
+        function hideInfo(element) {
+            clearTimeout(hoverTimeout);
+            element.querySelector('.bookmark-info').style.display = 'none';
+        }
+    </script>
+
 </body>
 </html>
