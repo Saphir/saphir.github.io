@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>书签</title>
+    <title>📚 书签导航</title>  <!-- 在标题前增加 Emoji 也可以模拟图标 -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         /* 页面全局样式 */
         body {
@@ -32,7 +33,7 @@
             color: white;
             text-decoration: none;
             display: block;
-            font-size: 18px;
+            font-size: 14px;
             font-weight: bold;
             transition: background 0.3s;
             cursor: pointer;
@@ -156,7 +157,8 @@
     <!-- 左侧导航栏 -->
     <div class="sidebar">
         <a class="nav-item" href="#bookmarks1">常用书签</a>
-        <a class="nav-item" href="#bookmarks2">其他书签</a>
+        <a class="nav-item" href="#bookmarks-reading">读书</a>
+        <a class="nav-item" href="#bookmarks-search">搜索引擎</a>
     </div>
 
     <!-- 右侧内容区域 -->
@@ -176,8 +178,8 @@
         </ul>
 
         <!-- 书签分类 - 其他书签 -->
-        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks2')">📁 读书</div>
-        <ul id="bookmarks2" class="bookmark-list">
+        <div class="bookmark-category" onclick="toggleBookmarkList('bookmarks-reading')">📁 读书</div>
+        <ul id="bookmarks-reading" class="bookmark-list">
             <li class="bookmark-item" onmouseover="showInfo(this)" onmouseout="hideInfo(this)">
                 <a href="https://www.book345.com/" target="_blank">无名图书</a>
                 <span class="menu-btn">⋮</span>
@@ -248,10 +250,9 @@
 
         // 页面加载时，默认展开某些分类
         window.onload = function() {
-            // 默认展开书签栏
             document.getElementById('bookmarks1').style.display = 'block';
-            // 默认展开其他书签
-            document.getElementById('bookmarks2').style.display = 'none';
+            document.getElementById('bookmarks-reading').style.display = 'block';
+            document.getElementById('bookmarks-search').style.display = 'block';
         };
 
         // 显示详细信息
